@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo mensaje de contacto</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; padding: 20px;">
+    <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #333;">
+        <h2 style="color: #444;">Nuevo mensaje de contacto</h2>
+        <p>Se ha recibido un nuevo mensaje desde el formulario de contacto del sitio web.</p>
+
+        <p><strong>Nombre completo:</strong> <span th:text="${contacto.nombreCompleto}"></span></p>
+        <p><strong>Teléfono:</strong> <span th:text="${contacto.telefono}"></span></p>
+        <p><strong>Correo electrónico:</strong> <span th:text="${contacto.email}"></span></p>
+        <p><strong>Motivo del contacto:</strong></p>
+        <p th:text="${contacto.motivoContacto}"></p>
+    </div>
+</body>
+</html>

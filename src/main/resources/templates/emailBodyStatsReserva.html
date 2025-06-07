@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte de Reservas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        footer {
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Reporte de Reservas</h1>
+    <p>Generado el: <span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}"></span></p>
+
+    <h2>Promedio de personas por reserva</h2>
+    <p><strong th:text="${stats.avgPersonasPorReserva}">0.0</strong></p>
+
+    <h2>Reservas por Estado</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Total Reservas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="estado : ${stats.reservasPorEstado}">
+                <td th:text="${estado.reservaStatus}">Estado</td>
+                <td th:text="${estado.cantidad}">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Reservas por Día (Último mes)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Día</th>
+                <th>Total Reservas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dia : ${stats.reservasPorDiaUltimoMes}">
+                <td th:text="${#temporals.format(dia.dia, 'dd/MM/yyyy')}">01/01/2025</td>
+                <td th:text="${dia.totalReservas}">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Reservas por Semana (Últimos 3 meses)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Semana</th>
+                <th>Total Reservas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="semana : ${stats.reservasPorSemanaUltimos3Meses}">
+                <td th:text="${semana.anio}">2025</td>
+                <td th:text="${semana.semana}">12</td>
+                <td th:text="${semana.totalReservas}">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Reservas por Mes (Último año)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Total Reservas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mes : ${stats.reservasPorMesUltimoAnio}">
+                <td th:text="${mes.anio}">2025</td>
+                <td th:text="${mes.mes}">6</td>
+                <td th:text="${mes.totalReservas}">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        <p>© Las Tres Nueces</p>
+    </footer>
+
+</body>
+
+</html>

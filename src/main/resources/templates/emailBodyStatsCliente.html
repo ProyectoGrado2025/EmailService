@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte Estadísticas Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Reporte Estadísticas Clientes</h1>
+
+    <h2>Gasto Medio por Cliente</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente ID</th>
+                <th>Gasto Medio (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="gasto : ${stats.gastoMedioClientes}">
+                <td th:text="${gasto.clienteId}"></td>
+                <td th:text="${gasto.gastoMedio}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Distribución de Clientes por Rango</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rango</th>
+                <th>Total Clientes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dist : ${stats.distribucionClientesPorRango}">
+                <td th:text="${dist.nombreRango}"></td>
+                <td th:text="${dist.totalClientes}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Media de Puntos por Rango</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rango</th>
+                <th>Media de Puntos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="media : ${stats.mediaPuntosPorRango}">
+                <td th:text="${media.nombreRango}"></td>
+                <td th:text="${media.mediaPuntos}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Top 10 Clientes por Puntos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente ID</th>
+                <th>Nombre</th>
+                <th>Puntos</th>
+                <th>Rango</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${stats.topClientesPorPuntos}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.puntos}"></td>
+                <td th:text="${cliente.nombreRango}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Total Puntos de Fidelización</h2>
+    <p th:text="${stats.totalPuntosFidelizacion}"></p>
+
+</body>
+
+</html>

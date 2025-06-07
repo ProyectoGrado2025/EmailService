@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte de Estadísticas de Platos</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+        }
+        h2 { 
+            margin-bottom: 10px; 
+        }
+        table { 
+            border-collapse: collapse; 
+            width: 300px; margin-bottom: 30px; 
+        }
+        th, td { 
+            border: 1px solid #ccc; 
+            padding: 6px 10px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f2f2f2; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reporte de Estadísticas de Platos</h1>
+
+    <section>
+        <h2>Top 3 Platos Más Vendidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plato</th>
+                    <th>Unidades Vendidas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="plato : ${stats.top3PlatosMasVendidos}">
+                    <td th:text="${plato.nombre}">Nombre Plato</td>
+                    <td th:text="${plato.totalVendidos}">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Top 3 Platos Menos Vendidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plato</th>
+                    <th>Unidades Vendidas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="plato : ${stats.top3PlatosMenosVendidos}">
+                    <td th:text="${plato.nombre}">Nombre Plato</td>
+                    <td th:text="${plato.totalVendidos}">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>

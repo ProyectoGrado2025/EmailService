@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte de Estadísticas de Facturación</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #acadac;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f5f8fa;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #34495e;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        }
+
+        .value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Reporte de Estadísticas de Facturación</h1>
+
+    <div>
+        <div class="section-title">Resumen Global</div>
+        <table>
+            <tr>
+                <th>Indicador</th>
+                <th>Valor (€)</th>
+            </tr>
+            <tr>
+                <td>Gasto Medio Global</td>
+                <td th:text="${stats.gastoMedioGlobal != null ? stats.gastoMedioGlobal : '0.00'}"></td>
+            </tr>
+            <tr>
+                <td>Ingreso Total</td>
+                <td th:text="${stats.ingresoTotal != null ? stats.ingresoTotal : '0.00'}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div class="section-title">Ingresos Diarios</div>
+        <table>
+            <tr>
+                <th>Período</th>
+                <th>Valor (€)</th>
+            </tr>
+            <tr>
+                <td>Ingresos Día Actual (hoy)</td>
+                <td th:text="${stats.ingresosDiaActual != null ? stats.ingresosDiaActual : '0.00'}"></td>
+            </tr>
+            <tr>
+                <td>Ingresos Día Anterior Completo</td>
+                <td th:text="${stats.ingresosDiaAnteriorCompleto != null ? stats.ingresosDiaAnteriorCompleto : '0.00'}">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div class="section-title">Ingresos Semanales</div>
+        <table>
+            <tr>
+                <th>Período</th>
+                <th>Valor (€)</th>
+            </tr>
+            <tr>
+                <td>Ingresos Semana Actual (hasta hoy)</td>
+                <td th:text="${stats.ingresosSemanaActual != null ? stats.ingresosSemanaActual : '0.00'}"></td>
+            </tr>
+            <tr>
+                <td>Ingresos Última Semana Completa</td>
+                <td
+                    th:text="${stats.ingresosUltimaSemanaCompleta != null ? stats.ingresosUltimaSemanaCompleta : '0.00'}">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div class="section-title">Ingresos Mensuales</div>
+        <table>
+            <tr>
+                <th>Período</th>
+                <th>Valor (€)</th>
+            </tr>
+            <tr>
+                <td>Ingresos Mes Actual (hasta hoy)</td>
+                <td th:text="${stats.ingresosMesActual != null ? stats.ingresosMesActual : '0.00'}"></td>
+            </tr>
+            <tr>
+                <td>Ingresos Último Mes Completo</td>
+                <td th:text="${stats.ingresosUltimoMesCompleto != null ? stats.ingresosUltimoMesCompleto : '0.00'}">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div class="section-title">Ingresos Anuales</div>
+        <table>
+            <tr>
+                <th>Período</th>
+                <th>Valor (€)</th>
+            </tr>
+            <tr>
+                <td>Ingresos Año Actual (hasta hoy)</td>
+                <td th:text="${stats.ingresosAnioActual != null ? stats.ingresosAnioActual : '0.00'}"></td>
+            </tr>
+            <tr>
+                <td>Ingresos Último Año Completo</td>
+                <td th:text="${stats.ingresosUltimoAnioCompleto != null ? stats.ingresosUltimoAnioCompleto : '0.00'}">
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

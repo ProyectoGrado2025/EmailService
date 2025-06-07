@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body { 
+            font-family: Arial; 
+            font-size: 12px; 
+        }
+        .encabezado { 
+            background-color: #27383f; 
+            padding: 10px; 
+            text-align: center; 
+            color: white
+        }
+        .tabla { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        .tabla th, .tabla td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+        }
+        .tabla th { 
+            background-color: #f2f2f2; 
+        }
+        .totales { 
+            margin-top: 20px; 
+            text-align: right; 
+        }
+    </style>
+</head>
+<body>
+    <div class="encabezado">
+        <h2>Factura ID: <span th:text="${factura.facturaId}"></span></h2>
+        <p>Fecha: <span th:text="${#temporals.format(factura.fechaFactura, 'dd/MM/yyyy HH:mm')}"></span></p>
+    </div>
+
+    <h3>Cliente:</h3>
+    <p th:text="${factura.clienteResponse.nombreCliente}"></p>
+    <p th:text="${factura.clienteResponse.emailCliente}"></p>
+
+    <h3>Detalles del Pedido:</h3>
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>Plato</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="linea : ${factura.pedidoResponse.lineasPedidoResponse}">
+                <td th:text="${linea.nombrePlato}"></td>
+                <td th:text="${linea.cantidadPlato}"></td>
+                <td th:text="${linea.precioUnitario} + ' €'"></td>
+                <td th:text="${linea.precioConjunto} + ' €'"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="font-weight: bold;">Beneficio Obtenido:</td>
+                <td th:text="${factura.beneficioCodigo}"></td>
+                <td>0€</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="totales">
+        <p><strong>Descuento aplicado:</strong> <span th:text="${factura.descuentoAplicado} + ' %'"></span></p>
+        <p><strong>Total:</strong> <span th:text="${factura.facturaPrecio} + ' €'"></span></p>
+        <p><strong>Forma de pago:</strong> <span th:text="${factura.formaPago}"></span></p>
+    </div>
+</body>
+</html>

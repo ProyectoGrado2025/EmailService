@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Resumen de factura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f4f4;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-collapse: collapse; border-radius: 8px; overflow: hidden;">
+                    
+                    <!-- Encabezado -->
+                    <tr>
+                        <td align="center" bgcolor="#6f42c1" style="padding: 40px 0;">
+                            <img src="cid:logoImage" alt="Logo del restaurante" style="width: 150px;" />
+                        </td>
+                    </tr>
+
+                    <!-- Cuerpo -->
+                    <tr>
+                        <td style="padding: 30px; font-family: Arial, sans-serif; color: #153643; font-size: 16px; line-height: 24px;">
+                            <h2 style="text-align: center; margin: 0; color: #333333;">Gracias por tu visita</h2>
+                            
+                            <p style="margin-top: 20px;">
+                                Hola <strong th:text="${factura.clienteResponse.nombreCliente}">Cliente</strong>,
+                            </p>
+
+                            <p>Adjuntamos la factura correspondiente a tu reserva. A continuación te mostramos un resumen:</p>
+
+                            <p>
+                                Gracias a su rango <strong><span th:text="${factura.nombreRangoAplicado}">Rango</span></strong>
+                                se le aplica un descuento del 
+                                <strong><span th:text="${factura.descuentoAplicado} + '%'">0%</span></strong>
+                            </p>
+                            <p>Punto ganados con esta visita: <span th:text="${factura.puntosGenerados}"></span></p>
+                            <ul style="padding-left: 20px;">
+                                <li><strong>ID de Factura:</strong> <span th:text="${factura.facturaId}"></span></li>
+                                <li><strong>Fecha de emisión:</strong> <span th:text="${#temporals.format(factura.fechaFactura, 'dd/MM/yyyy HH:mm')}"></span></li>
+                                <li><strong>Forma de pago:</strong> <span th:text="${factura.formaPago}"></span></li>
+                                <li><strong>Total:</strong> <span th:text="${factura.facturaPrecio} + '€'"></span></li>
+                            </ul>
+
+                            <p>Para más detalles, revisa el archivo PDF adjunto.</p>
+
+                            <p style="margin-top: 30px;">
+                                ¡Esperamos verte pronto de nuevo!
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Pie de página -->
+                    <tr>
+                        <td bgcolor="#000000" style="padding: 20px 30px; font-family: Arial, sans-serif; color: #ffffff; font-size: 14px;">
+                            <table width="100%" style="text-align: center;">
+                                <tr>
+                                    <td width="75%">
+                                        &copy; Las Tres Nueces, 2025<br/>
+                                        <span th:text="${address}" style="color: #ffffff;"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

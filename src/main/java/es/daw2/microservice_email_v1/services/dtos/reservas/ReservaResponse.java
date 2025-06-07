@@ -1,4 +1,4 @@
-package es.daw2.microservice_email_v1.services.dtos;
+package es.daw2.microservice_email_v1.services.dtos.reservas;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
